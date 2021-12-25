@@ -24,7 +24,7 @@ const client = new watchman.Client({})
 
 const chalk = require("chalk")
 const { build } = require("tsup")
-const {debounce} = require("debounce")
+const {debounce} = require("ts-debounce")
 
 // Long running process which gets reset in onChange
 let serverProcess = undefined
@@ -53,7 +53,7 @@ async function onChange() {
 
 // Make it so that onChange can only be called every 500ms
 // to avoid loading the server twice
-const debouncedOnChange = debounce(onChange, { interval: 500, immediate: false })
+const debouncedOnChange = debounce(onChange, 500, { isImmediate: false })
 
 function watcher(error, resp) {
   if (error) {
@@ -96,13 +96,13 @@ function watcher(error, resp) {
   )
 
   client.on("subscription", async function (resp) {
+    console.log("subb")
     // NOOP for large amounts of files, something weird is probably happening
     if (resp.files.length > 10) return
-
     await debouncedOnChange()
   })
 
-  onChange()
+  debouncedOnChange()
 }
 
 // Some logging callbacks for debugging
