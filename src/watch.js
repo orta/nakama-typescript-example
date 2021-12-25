@@ -81,7 +81,7 @@ function watcher(error, resp) {
       "Nakama Builder",
       {
         // Basically if a .ts file in this folder changes we get a trigger
-        expression: ["anyof", ["match", "src/**/*.ts"]],
+        expression: ["anyof", ["match", "*.ts"]],
         relative_root: pathPrefix,
         fields: ["name", "exists", "type"],
       },

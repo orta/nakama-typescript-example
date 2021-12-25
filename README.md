@@ -4,6 +4,8 @@ This repo shows how you can set up a [Nakama server](https://heroiclabs.com/docs
 
 You can work on your server and with every save the TypeScript code is bundled up into a single file and the nakama server is restarted. Iteration time for a trivial app is in the microseconds, I do not have a non-trivial app to test with.
 
+<img src="./example.gif">
+
 ### How it works
 
 There are 2 main components from the JS world: [`tsup`](https://tsup.egoist.sh) and [`watchman`](https://facebook.github.io/watchman/).
