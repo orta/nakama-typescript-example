@@ -81,7 +81,7 @@ function watcher(error, resp) {
       "Nakama Builder",
       {
         // Basically if a .ts file in this folder changes we get a trigger
-        expression: ["anyof", ["match", "*.ts"]],
+        expression: ["anyof", ["match", "src/**/*.ts"]],
         relative_root: pathPrefix,
         fields: ["name", "exists", "type"],
       },
@@ -96,7 +96,6 @@ function watcher(error, resp) {
   )
 
   client.on("subscription", async function (resp) {
-    console.log("subb")
     // NOOP for large amounts of files, something weird is probably happening
     if (resp.files.length > 10) return
     await debouncedOnChange()
