@@ -24,6 +24,7 @@ const client = new watchman.Client({})
 
 const chalk = require("chalk")
 const { build } = require("tsup")
+const {debounce} = require("debounce")
 
 // Long running process which gets reset in onChange
 let serverProcess = undefined
@@ -49,6 +50,10 @@ async function onChange() {
     log(`${chalk.green("nakama exited")} with code ${code}`)
   });
 }
+
+// Make it so that onChange can only be called every 500ms
+// to avoid loading the server twice
+const debouncedOnChange = debounce(onChange, { interval: 500, immediate: false })
 
 function watcher(error, resp) {
   if (error) {
@@ -94,7 +99,7 @@ function watcher(error, resp) {
     // NOOP for large amounts of files, something weird is probably happening
     if (resp.files.length > 10) return
 
-    await onChange()
+    await debouncedOnChange()
   })
 
   onChange()

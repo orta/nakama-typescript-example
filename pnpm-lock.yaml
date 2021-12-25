@@ -5,6 +5,7 @@ specifiers:
   dotenv: ^10.0.0
   fb-watchman: ^2.0.1
   nakama-runtime: https://github.com/heroiclabs/nakama-common
+  ts-debounce: ^4.0.0
   tsup: ^5.11.8
 
 dependencies:
@@ -12,6 +13,7 @@ dependencies:
   dotenv: 10.0.0
   fb-watchman: 2.0.1
   nakama-runtime: github.com/heroiclabs/nakama-common/5bb15dc0034210e8e2c44f9e99c3d77691d76d4f
+  ts-debounce: 4.0.0
   tsup: 5.11.9
 
 packages:
@@ -749,6 +751,10 @@ packages:
   /tree-kill/1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
     hasBin: true
+    dev: false
+
+  /ts-debounce/4.0.0:
+    resolution: {integrity: sha512-+1iDGY6NmOGidq7i7xZGA4cm8DAa6fqdYcvO5Z6yBevH++Bdo9Qt/mN0TzHUgcCcKv1gmh9+W5dHqz8pMWbCbg==}
     dev: false
 
   /ts-interface-checker/0.1.13:

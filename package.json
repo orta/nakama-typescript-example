@@ -15,6 +15,7 @@
     "dotenv": "^10.0.0",
     "fb-watchman": "^2.0.1",
     "nakama-runtime": "https://github.com/heroiclabs/nakama-common",
+    "ts-debounce": "^4.0.0",
     "tsup": "^5.11.8"
   }
 }
