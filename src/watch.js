@@ -39,7 +39,21 @@ async function onChange() {
  serverProcess = spawn(process.env.NAKAMA_PATH, ['--runtime.js_entrypoint', './server.js', '--database.address', "postgres:password@127.0.0.1:5432"]);
   
  serverProcess.stdout.on('data', (data) => {
-    console.log(data.toString())
+    // Raw output (JSON)
+    // console.log(data.toString())
+
+    // Simpler output for dev
+    /** @type {string} */
+    const log = data.toString()
+    log.split("\n").forEach((l) => {
+      if (l.length === 0) return
+      try {
+        const logJSON = JSON.parse(l)
+        console.log(chalk.grey(logJSON.severity || logJSON.level) + " " + logJSON.msg)
+      } catch (error) {
+        console.log(l)
+      }
+    })
   });
   
   serverProcess.stderr.on('data', (data) => {
